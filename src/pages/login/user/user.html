@@ -1,0 +1,56 @@
+<ion-content no-bounce>
+    <h2 class="slide-title">CREAR CUENTA</h2>
+    <form [formGroup]="contenedor" (ngSubmit)="crearCuentas()" action="">
+
+        <ion-list>
+            <ion-item>
+                <ion-label color="primary" floating>EMAIL</ion-label>
+                <ion-input formControlName="email" type="email" name="email"></ion-input>
+            </ion-item>
+
+            <div class="alerta" *ngIf="!contenedor.value.email && contenedor.controls.email.touched">
+                EL CORREO ES REQUERIDO
+            </div>
+            <div class="alerta" *ngIf="contenedor.controls.email.errors && contenedor.controls.email.touched">
+                EL CORREO ES INCORRECTO
+            </div>
+
+            <ion-item>
+                <ion-label color="primary" floating>NOMBRE</ion-label>
+                <ion-input formControlName="firstname" type="text" name="firstname"></ion-input>
+            </ion-item>
+
+            <div class="alerta" *ngIf="!contenedor.value.firstname && contenedor.controls.firstname.touched">
+                EL NOMBRE ES REQUERIDO
+            </div>
+
+            <ion-item>
+                <ion-label color="primary" floating>APELLIDO</ion-label>
+                <ion-input formControlName="lastname" type="text" name="lastname"></ion-input>
+            </ion-item>
+
+            <div class="alerta" *ngIf="!contenedor.value.lastname && contenedor.controls.lastname.touched">
+                EL APELLIDO ES REQUERIDO
+            </div>
+
+            <ion-item>
+                <ion-label color="primary" floating>CONTRASEÑA</ion-label>
+                <ion-input formControlName="password" type="password" name="password"></ion-input>
+            </ion-item>
+
+            <div class="alerta" *ngIf="!contenedor.value.password && contenedor.controls.password.touched">
+                LA CONTRASEÑA ES REQUERIDA
+            </div>
+            <div class="alerta" *ngIf="contenedor.controls.password.errors &&  contenedor.controls.password.touched">
+                INGRESE LA CONTRASEÑA CORRECTA
+            </div>
+
+        </ion-list>
+        <button ion-button type="submit" [disabled]="!contenedor.valid" block>
+            CREAR CUENTA
+        </button>
+        <ion-item>
+            <a button href="" class="slide-image">INICIAR SESION</a>
+        </ion-item>
+    </form>
+</ion-content>
