@@ -1,40 +1,50 @@
-<ion-content no-bounce>
-    <form [formGroup]="forma" (ngSubmit)="login()" action="">
-        <img src="assets/imgs/banco.png" class="slide-image" />
-        <h2 class="slide-title">Iniciar Sesion</h2>
-        <ion-list class="campos">
+<ion-content class="login-content" padding>
 
-            <ion-item>
-                <ion-label color="primary" floating>USUARIO</ion-label>
-                <ion-input formControlName="email" type="email" name="email"></ion-input>
-            </ion-item>
+    <ion-row class="logo-row">
+        <ion-col></ion-col>
+        <ion-col width-67>
+            <img src="assets/imgs/banco.png" />
+        </ion-col>
+        <ion-col></ion-col>
+    </ion-row>
 
-            <div class="alerta" *ngIf="!forma.value.email && forma.controls.email.touched">
-                EL USUARIO ES REQUERIDO
-            </div>
-            <div class="alerta" *ngIf="forma.controls.email.errors && forma.controls.email.touched">
-                EL CORREO ES INCORRECTO
-            </div>
+    <div class="login-box">
+        <form [formGroup]="forma" (ngSubmit)="login()" action="">
+            <ion-row>
+                <ion-col>
+                    <ion-list inset>
+                        <ion-item>
+                            <ion-input formControlName="email" type="email" placeholder='CORREO ELECTRONICO' name="email"></ion-input>
+                        </ion-item>
 
-            <ion-item>
-                <ion-label color="primary" floating>CONTRASEÑA</ion-label>
-                <ion-input formControlName="password" type="password" name="password"></ion-input>
-            </ion-item>
+                        <div class="alerta" *ngIf="!forma.value.email && forma.controls.email.touched">
+                            EL USUARIO ES REQUERIDO
+                        </div>
+                        <div class="alerta" *ngIf="forma.controls.email.errors && forma.controls.email.touched">
+                            EL CORREO ES INCORRECTO
+                        </div>
 
-            <div class="alerta" *ngIf="!forma.value.password && forma.controls.password.touched">
-                LA CONTRASEÑA ES REQUERIDA
-            </div>
+                        <ion-item>
+                            <ion-input formControlName="password" type="password" placeholder="CONTRASEÑA" name="password"></ion-input>
+                        </ion-item>
 
-            <div class="alerta" *ngIf="forma.controls.password.errors &&  forma.controls.password.touched">
-                INGRESE LA CONTRASEÑA CORRECTA
-            </div>
+                        <div class="alerta" *ngIf="!forma.value.password && forma.controls.password.touched">
+                            LA CONTRASEÑA ES REQUERIDA
+                        </div>
 
-        </ion-list>
-        <button ion-button type="submit" [disabled]="!forma.valid" block>
-                Ingresar
-            </button>
-        <ion-item>
-            <a button (click)="irCuenta()" class="slide-image">CREAR CUENTA</a>
-        </ion-item>
-    </form>
+                        <div class="alerta" *ngIf="forma.controls.password.errors &&  forma.controls.password.touched">
+                            INGRESE LA CONTRASEÑA CORRECTA
+                        </div>
+                    </ion-list>
+
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="signup-col">
+                    <button ion-button class="submit-btn" full type="submit" [disabled]="!forma.valid">INGRESAR</button>
+                    <a ion-button class="register-btn" block clear (click)="irCuenta()">CREAR CUENTA</a>
+                </ion-col>
+            </ion-row>
+        </form>
+    </div>
 </ion-content>

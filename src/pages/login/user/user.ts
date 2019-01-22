@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../../providers/auth/auth';
+import { AlertController } from 'ionic-angular';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { AuthProvider } from '../../../providers/auth/auth';
 export class UserPage implements OnInit{
     contenedor: FormGroup;
     constructor(public navCtrl: NavController, public navParams: NavParams,
-            private _auth: AuthProvider, private navCrtl: NavController) {
+            private _auth: AuthProvider, private navCrtl: NavController,  private alertCtrl: AlertController) {
     }
 
     ngOnInit(){
@@ -25,10 +26,14 @@ export class UserPage implements OnInit{
     }
 
     crearCuentas(){
-        console.log("Entrando ...");
-        console.log(this.contenedor.value)
         this._auth.crearUser(this.contenedor.value).subscribe(res=> {
-            console.log(res)
+        }, error =>{
+            let alert = this.alertCtrl.create({
+                title: 'ERROR!',
+                subTitle: 'ERROR AL CREAR TU CUENTA',
+                buttons: ['ACEPTAR']
+            });
+            alert.present();
         })
     }
 }

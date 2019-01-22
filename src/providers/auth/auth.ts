@@ -11,31 +11,24 @@ export class AuthProvider {
   }
 
   ingresar = (email: string, password) => {
-    let data =  new URLSearchParams()
-    data.append("email", email);
-    data.append("password", password);
+    let data =  {
+      "email": email,
+      "password" : password 
+    }
     let url = `${URL}/user/authenticate`;
-
     return this.http.post(url, data)
       .map(res => {
+        console.log(res);
         let result =  res.json();
-        console.log(result);
       })
   }
 
 
   crearUser = (datos) =>{
-    let { email, firstname, lastname, password } = datos;
-    let data =  new URLSearchParams()
-    data.append("email", email);
-    data.append("password", password);
-    data.append("firstname", firstname);
-    data.append("lastname", lastname);
     let url = `${URL}/user/create`;
-    return this.http.post(url, data)
+    return this.http.post(url, datos)
       .map(res => {
         let result =  res.json();
-        console.log(result);
       })
   }
 
