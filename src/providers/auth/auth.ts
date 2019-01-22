@@ -52,10 +52,7 @@ export class AuthProvider {
 
   crearUser = (datos) =>{
     let url = `${URL}/user/create`;
-    return this.http.post(url, datos)
-      .map(res => {
-        let result =  res.json();
-      })
+    return this.http.post(url, datos);
   }
 
   cerrarSesion(){

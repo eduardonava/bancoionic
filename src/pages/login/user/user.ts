@@ -1,9 +1,10 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../../providers/auth/auth';
 import { AlertController } from 'ionic-angular';
+import { LoginPage } from '../login';
 
 
 @Component({
@@ -13,7 +14,8 @@ import { AlertController } from 'ionic-angular';
 export class UserPage implements OnInit{
     contenedor: FormGroup;
     constructor(public navCtrl: NavController, public navParams: NavParams,
-            private _auth: AuthProvider, private navCrtl: NavController,  private alertCtrl: AlertController) {
+            private _auth: AuthProvider, private navCrtl: NavController,  private alertCtrl: AlertController, 
+             public loadingCtrl: LoadingController) {
     }
 
     ngOnInit(){
@@ -27,13 +29,27 @@ export class UserPage implements OnInit{
 
     crearCuentas(){
         this._auth.crearUser(this.contenedor.value).subscribe(res=> {
+            let loading = this.loadingCtrl.create({
+                content: 'CUENTA CREADO CORRECTAMENTE'
+            });
+            loading.present();
+            
+            setTimeout(() => {
+                loading.dismiss();
+                this.navCrtl.push(LoginPage);
+            }, 1000);
+
         }, error =>{
             let alert = this.alertCtrl.create({
                 title: 'ERROR!',
-                subTitle: 'ERROR AL CREAR TU CUENTA',
+                subTitle: error["message"],
                 buttons: ['ACEPTAR']
             });
             alert.present();
         })
+    }
+
+    irCuenta(){
+        this.navCrtl.push(LoginPage);
     }
 }

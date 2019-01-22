@@ -6,9 +6,9 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ConfigsHttpRequests implements HttpInterceptor {
-
 	constructor(){}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+			console.log("Intercept");
 	    const token = localStorage.getItem('token');
 	    const JWT = `JWT ${token}`;
 	    if(token) {
@@ -28,6 +28,7 @@ export class ConfigsHttpRequests implements HttpInterceptor {
 	    return next.handle(req)
 	    .do((ev: HttpEvent<any>) => {
 	    	if(ev instanceof HttpResponse){
+					console.log("***********************************************");
 	    		// console.log('processing response', ev);
 	    		// if (ev.status === 200) {//Actualizar token
 

@@ -1,10 +1,23 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar hideBackButton>
+        <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
 
-        <button ion-button icon-start *ngIf="_auth.activo()" (click)="_auth.cerraSesion()">
-            <ion-icon name="star"></ion-icon>
-            SALIR
-          </button>
+        <ion-title>
+            MIS CUENTAS
+        </ion-title>
 
+        <ion-buttons end>
+            <button ion-button *ngIf="_auth.activo()" (click)="_auth.cerrarSesion()">
+                Salir
+            </button>
+
+        </ion-buttons>
     </ion-navbar>
+
 </ion-header>
+
+<ion-content>
+
+</ion-content>

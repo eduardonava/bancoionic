@@ -1,23 +1,4 @@
 page-user {
-    .toolbar-background {
-        background: #fff;
-        border-color: transparent;
-    }
-    .slide-zoom {
-        height: 100%;
-    }
-    .slide-image {
-        max-height: 130px;
-        max-width: 140px;
-        margin: 18px 0;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .slide-title {
-        margin-top: 2.8rem;
-        text-align: center;
-    }
     .alerta {
         font-size: 12px;
         line-height: 1.5;
@@ -27,5 +8,47 @@ page-user {
     }
     .campos {
         padding-right: 10x;
+    }
+    .user-content {
+        background-image: url("/assets/imgs/fondo.jpg");
+        .logo-row {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+        .login-box {
+            background: #399F8B;
+            padding: 20px 20px 0px 20px;
+            margin-top: 30px;
+        }
+        ion-row {
+            align-items: center;
+            text-align: center;
+        }
+        ion-item {
+            border-radius: 30px !important;
+            padding-left: 30px !important;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            border: 1px solid #ffffff;
+            border-bottom: 0px !important;
+            box-shadow: none !important;
+        }
+        .signup-col {
+            margin: 0px 16px 0px 16px;
+            padding-bottom: 20px;
+        }
+        .item-inner {
+            border-bottom-color: #ffffff !important;
+            box-shadow: none !important;
+        }
+        .submit-btn {
+            background: #51CFB1;
+            border-radius: 30px !important;
+            border: 1px solid #ffffff;
+        }
+        .register-btn {
+            color: #ffffff;
+            font-size: 0.8em;
+        }
     }
 }

@@ -1,56 +1,58 @@
-<ion-content no-bounce>
-    <h2 class="slide-title">CREAR CUENTA</h2>
-    <form [formGroup]="contenedor" (ngSubmit)="crearCuentas()" action="">
+<ion-content class="user-content" no-bounce>
+    <ion-title>CREAR CUENTA</ion-title>
+    <div class="login-box">
+        <form [formGroup]="contenedor" (ngSubmit)="crearCuentas()" action="">
+            <ion-row>
+                <ion-col>
+                    <ion-list inset>
 
-        <ion-list>
-            <ion-item>
-                <ion-label color="primary" floating>EMAIL</ion-label>
-                <ion-input formControlName="email" type="email" name="email"></ion-input>
-            </ion-item>
+                        <ion-item>
+                            <ion-input formControlName="email" type="email" name="email" placeholder="CORREO ELECTRONICO"></ion-input>
+                        </ion-item>
 
-            <div class="alerta" *ngIf="!contenedor.value.email && contenedor.controls.email.touched">
-                EL CORREO ES REQUERIDO
-            </div>
-            <div class="alerta" *ngIf="contenedor.controls.email.errors && contenedor.controls.email.touched">
-                EL CORREO ES INCORRECTO
-            </div>
+                        <div class="alerta" *ngIf="!contenedor.value.email && contenedor.controls.email.touched">
+                            EL CORREO ES REQUERIDO
+                        </div>
+                        <div class="alerta" *ngIf="contenedor.controls.email.errors && contenedor.controls.email.touched">
+                            EL CORREO ES INCORRECTO
+                        </div>
 
-            <ion-item>
-                <ion-label color="primary" floating>NOMBRE</ion-label>
-                <ion-input formControlName="firstname" type="text" name="firstname"></ion-input>
-            </ion-item>
+                        <ion-item>
+                            <ion-input formControlName="firstname" type="text" name="firstname" placeholder="NOMBRE"></ion-input>
+                        </ion-item>
 
-            <div class="alerta" *ngIf="!contenedor.value.firstname && contenedor.controls.firstname.touched">
-                EL NOMBRE ES REQUERIDO
-            </div>
+                        <div class="alerta" *ngIf="!contenedor.value.firstname && contenedor.controls.firstname.touched">
+                            EL NOMBRE ES REQUERIDO
+                        </div>
 
-            <ion-item>
-                <ion-label color="primary" floating>APELLIDO</ion-label>
-                <ion-input formControlName="lastname" type="text" name="lastname"></ion-input>
-            </ion-item>
+                        <ion-item>
+                            <ion-input formControlName="lastname" type="text" name="lastname" placeholder="APELLIDO"></ion-input>
+                        </ion-item>
 
-            <div class="alerta" *ngIf="!contenedor.value.lastname && contenedor.controls.lastname.touched">
-                EL APELLIDO ES REQUERIDO
-            </div>
+                        <div class="alerta" *ngIf="!contenedor.value.lastname && contenedor.controls.lastname.touched">
+                            EL APELLIDO ES REQUERIDO
+                        </div>
 
-            <ion-item>
-                <ion-label color="primary" floating>CONTRASEÑA</ion-label>
-                <ion-input formControlName="password" type="password" name="password"></ion-input>
-            </ion-item>
+                        <ion-item>
+                            <ion-input formControlName="password" type="password" name="password" placeholder="CONTRASEÑA"></ion-input>
+                        </ion-item>
 
-            <div class="alerta" *ngIf="!contenedor.value.password && contenedor.controls.password.touched">
-                LA CONTRASEÑA ES REQUERIDA
-            </div>
-            <div class="alerta" *ngIf="contenedor.controls.password.errors &&  contenedor.controls.password.touched">
-                INGRESE LA CONTRASEÑA CORRECTA
-            </div>
+                        <div class="alerta" *ngIf="!contenedor.value.password && contenedor.controls.password.touched">
+                            LA CONTRASEÑA ES REQUERIDA
+                        </div>
+                        <div class="alerta" *ngIf="contenedor.controls.password.errors &&  contenedor.controls.password.touched">
+                            INGRESE LA CONTRASEÑA CORRECTA
+                        </div>
 
-        </ion-list>
-        <button ion-button type="submit" [disabled]="!contenedor.valid" block>
-            CREAR CUENTA
-        </button>
-        <ion-item>
-            <a button href="" class="slide-image">INICIAR SESION</a>
-        </ion-item>
-    </form>
+                        <ion-row>
+                            <ion-col class="signup-col">
+                                <button ion-button class="submit-btn" full type="submit" [disabled]="!contenedor.valid">CREAR CUENTA</button>
+                                <a ion-button class="register-btn" block clear (click)="irCuenta()">INICIAR SESION</a>
+                            </ion-col>
+                        </ion-row>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+        </form>
+    </div>
 </ion-content>

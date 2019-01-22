@@ -5,18 +5,20 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { AuthProvider } from '../providers/auth/auth';
+import { ConfigsHttpRequests } from '../providers/auth/auth-error';
+import { HomeProvider } from '../providers/auth/home';
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { UserPage } from '../pages/login/user/user';
 import { LoginPage } from '../pages/login/login';
 
-
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AuthProvider } from '../providers/auth/auth';
-import { ConfigsHttpRequests } from '../providers/auth/auth-error';
+
 
 @NgModule({
   declarations: [
@@ -47,12 +49,9 @@ import { ConfigsHttpRequests } from '../providers/auth/auth-error';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: HTTP_INTERCEPTORS, useClass: ConfigsHttpRequests, multi: true },
     AuthProvider,
-    {
-      provide: HTTP_INTERCEPTORS, 
-      useClass: ConfigsHttpRequests,
-      multi: true
-    }
+    HomeProvider
   ]
 })
 export class AppModule {}
