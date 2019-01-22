@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -8,7 +8,6 @@ import 'rxjs/add/operator/catch';
 export class ConfigsHttpRequests implements HttpInterceptor {
 
 	constructor(){}
-
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 	    const token = localStorage.getItem('token');
 	    const JWT = `JWT ${token}`;

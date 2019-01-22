@@ -1,17 +1,10 @@
-<ion-list>
+<ion-header>
+    <ion-navbar>
 
-    <ion-item>
-        <ion-label>Username</ion-label>
-        <ion-input type="text"></ion-input>
-    </ion-item>
+        <button ion-button icon-start *ngIf="_auth.activo()" (click)="_auth.cerraSesion()">
+            <ion-icon name="star"></ion-icon>
+            SALIR
+          </button>
 
-    <ion-item>
-        <ion-label>Password</ion-label>
-        <ion-input type="password"></ion-input>
-    </ion-item>
-
-</ion-list>
-
-<div padding>
-    <button block>Sign In</button>
-</div>
+    </ion-navbar>
+</ion-header>

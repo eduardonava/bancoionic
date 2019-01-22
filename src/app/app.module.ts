@@ -4,24 +4,19 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { Http, RequestOptions } from '@angular/http';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
-
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
-import { AuthProvider } from '../providers/auth/auth';
-import { HttpModule } from '@angular/http';
 import { UserPage } from '../pages/login/user/user';
+import { LoginPage } from '../pages/login/login';
 
+
+import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ConfigsHttpRequests } from '../providers/auth/auth-error';
 
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp(new AuthConfig(), http, options);
-}
- 
+import { AuthProvider } from '../providers/auth/auth';
+import { ConfigsHttpRequests } from '../providers/auth/auth-error';
 
 @NgModule({
   declarations: [
@@ -38,7 +33,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     IonicModule.forRoot(MyApp,  {
       scrollAssist: false, 
       autoFocusAssist: false
-    })
+    }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,16 +48,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    AuthProvider,
     {
       provide: HTTP_INTERCEPTORS, 
       useClass: ConfigsHttpRequests,
       multi: true
-    },
-    {
-      provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
-      deps: [Http, RequestOptions]
     }
   ]
 })

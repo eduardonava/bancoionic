@@ -4,7 +4,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserPage } from './user/user';
 import { AlertController } from 'ionic-angular';
-import { JwtHelper } from 'angular2-jwt';
+import { HomePage } from '../home/home';
+
 
 @IonicPage()
 @Component({
@@ -31,12 +32,9 @@ export class LoginPage implements OnInit{
     console.log("Entrando");
     this._auth.ingresar(this.forma.value.email, this.forma.value.password).subscribe(respuesta => {
       console.log(respuesta);
-      // if (res["token"]) {
-      //   console.log(res);
-      //   // const jwtHelper: JwtHelper = new JwtHelper();
-      //   // const decodedToken = jwtHelper.decodeToken(res["token"]);
-      //   // console.log(decodedToken);
-      // }
+      if (this._auth.activo()) {
+        this.navCrtl.push(HomePage);
+      }
     },error => {
       let alert = this.alertCtrl.create({
         title: 'ERROR!',
