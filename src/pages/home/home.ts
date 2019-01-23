@@ -9,10 +9,12 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'home.html'
 })
 export class HomePage  implements OnInit{
-
+  cuentas:any = [];
+  id:any;
   constructor(public navCtrl: NavController, public _auth: AuthProvider, public _home: HomeProvider, private storage: Storage) {
-  
+
   }
+
 
   ngOnInit(){
     this._home.verCuentas().subscribe(() => {
@@ -20,6 +22,24 @@ export class HomePage  implements OnInit{
     },error =>{
 
     })
+
+    this._home.solicitarCuentas().subscribe(res => {
+        console.log(res);
+        this.cuentas = res["response"]["type_cards"];
+        this.id = res["response"]["_id"];
+    },error =>{
+
+    })
   }
+
+  
+  verMisCuentas(tipo, name){
+      this._home.misCuentas({"userId": this.id, "name": name, "type": tipo}).subscribe(res => {
+        console.log(res);
+      },error =>{
+
+      })
+  }
+ 
 
 }

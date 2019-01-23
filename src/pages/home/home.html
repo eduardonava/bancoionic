@@ -19,5 +19,14 @@
 </ion-header>
 
 <ion-content>
+    <ion-list>
 
+        <ion-item *ngFor="let item of cuentas">
+
+            <button ion-button block [color]="primary" (click)="verMisCuentas(item.type, item.name)">
+                    {{ item.type }} {{ item.name }}
+            </button>
+
+        </ion-item>
+    </ion-list>
 </ion-content>

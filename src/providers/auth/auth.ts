@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { URL } from './urls';
 import "rxjs/add/operator/map";
 import * as JWT from 'jwt-decode';
 import { AlertController, Platform } from 'ionic-angular';
-import { Storage } from "@ionic/storage"; 
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class AuthProvider {
@@ -14,7 +14,7 @@ export class AuthProvider {
   lastname: string = "";
   email: string = "";
   
-  constructor(public http: Http, private platform: Platform, private storge: Storage) {
+  constructor(public http: HttpClient, private platform: Platform, private storge: Storage) {
     console.log('Hello AuthProvider Provider');
     this.cargarStorage();
   }
@@ -35,7 +35,7 @@ export class AuthProvider {
     let url = `${URL}/user/authenticate`;
     return this.http.post(url, data)
       .map(res => {
-        let result =  res.json();
+        let result =  res;
         if (result["token"]) {
           var decoded = JWT(result["token"]);
           this.token = result["token"];

@@ -28,11 +28,6 @@ export class ConfigsHttpRequests implements HttpInterceptor {
 	    return next.handle(req)
 	    .do((ev: HttpEvent<any>) => {
 	    	if(ev instanceof HttpResponse){
-					console.log("***********************************************");
-	    		// console.log('processing response', ev);
-	    		// if (ev.status === 200) {//Actualizar token
-
-	    		// }
 	    	}
 	    })
 	    .catch(err => {
